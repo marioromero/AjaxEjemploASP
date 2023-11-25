@@ -30,8 +30,9 @@ namespace AjaxEjemplo.Controllers
         }
 
         [HttpPost]
-        public JsonResult testAjax()
+        public JsonResult testAjax(Usuario usuario)
         {
+
             string mensaje = "hola desde método";
 
             bool usuarioLogeado = false;
@@ -49,4 +50,10 @@ namespace AjaxEjemplo.Controllers
             return Json(mensaje);
         }
     }
+}
+
+public class Usuario
+{
+    public string CorreoElectronico { get; set; }
+    public string Password { get; set; }
 }

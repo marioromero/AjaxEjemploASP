@@ -47,14 +47,16 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script> 
 
-        $("#enviar").click( function() {
-        
+        $("#enviar").click( function(e) {
+            console.log("click en boton");
+            e.preventDefault();
             //alert("click en boton");
             var url = "@Url.Action("testAjax", "Home")"
             var email = $("#email").val()
+            var pass = $("#pass").val()
             //alert(email);
-            var data = { correoElectronico: email }
-
+            var data = { correoElectronico: email, password: pass }
+            console.log(email)
             $.post(url, data).done(function(data){
 
                 alert(data)
