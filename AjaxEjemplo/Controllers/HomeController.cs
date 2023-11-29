@@ -30,24 +30,27 @@ namespace AjaxEjemplo.Controllers
         }
 
         [HttpPost]
-        public JsonResult testAjax(Usuario usuario)
+        public IActionResult testAjax(Usuario usuario)
         {
-
-            string mensaje = "hola desde método";
-
-            bool usuarioLogeado = false;
-
-
-            /*if (usuarioLogeado)
+            Usuario usuariobd = new Usuario()
             {
-                return View("")
+                CorreoElectronico = "usuariocorrecto@mail.com",
+                Password = "123456"
+            };
+
+            if (usuario.CorreoElectronico == usuariobd.CorreoElectronico && usuario.Password == usuariobd.Password)
+            {
+                return Json(new { success = true, redirectUrl = Url.Action("Intranet", "Home") });
             }
             else
             {
-                return Json(mensaje);
-            }*/
+                return Json(new { success = false, message = "Usuario incorrecto" });
+            }
+        }
 
-            return Json(mensaje);
+        public IActionResult Intranet()
+        {
+            return View();
         }
     }
 }
